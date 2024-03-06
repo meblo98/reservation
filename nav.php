@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+<head>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="script.js"></script>
+    <title>gestion de billet</title>
+    <link rel="stylesheet" href="style_card.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 <body>
 <div class="main-container">
         <div class="header">
             <a href="#" id="logo"><img src="images/2.png" alt=""></a>
             <nav class="navbar">
-                <a href="#">home</a>
-                <a href="#">reservation</a>
-                <a href="#">gallery</a>
+                <a href="index.php">home</a>
+                <a href="ajout_billet.php">ajout billet</a>
+                <!-- <a href="#">gallery</a>
                 <a href="#">about</a>
                 <a href="#">blog</a>
-                <a href="#">contact</a>
+                <a href="#">contact</a> -->
             </nav>
 
             <div class="icons">
@@ -39,5 +40,6 @@
             <div class="main"></div>
         </div>
     </div>
+
 </body>
 </html>

@@ -2,7 +2,7 @@
   define('DB_SERVER', 'localhost');
   define('DB_USERNAME', 'root');
   define('DB_PASSWORD', '');
-  define('DB_NAME', 'resrvation'); 
+  define('DB_NAME', 'reservation'); 
 
   $connexion = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_NAME);
  
@@ -10,5 +10,5 @@
     die("Échec de la connexion : " . $connexion->connect_error);
     }
     else{
-        echo "la connexion est bonne";
+        //echo "la connexion est bonne";
     }
