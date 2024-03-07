@@ -3,45 +3,46 @@
 <html lang="fr">
 
 <body>
+<?php
 
-<?php require_once "nav.php" ?>
-    <div class="container">
-    <?php
-
-    
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require_once "nav.php";
  require_once "config.php";
-
-if (isset($_REQUEST['numero_billet'], $_REQUEST['prix'], $_REQUEST['classe'], $_REQUEST['vol'])){
+//if (isset($_REQUEST['prix'], $_REQUEST['classe'], $_REQUEST['numero_billet'])){
   // récupérer les données saissi par l'utilisateur et supprimer les antislashes ajoutés par le formulaire
-  $numero_billet = stripslashes($_REQUEST['numero_billet']);
-  $numero_billet = mysqli_real_escape_string($connexion, $numero_billet); 
-  $prix = stripslashes($_REQUEST['prix']);
-  $classe = stripslashes($_REQUEST['classe']);
-  $classe = mysqli_real_escape_string($connexion, $classe);
-  $vol = stripslashes($_REQUEST['vol']);
+  if (isset($_POST['envoyer'])) {
+    # code...
+  
+  $prix = $_POST['prix'];
+  $id_vol = $_POST['id_vol'];
+  //$prix = mysqli_real_escape_string($conn, $prix); 
+  $classe = $_POST['classe'];
+  $numero_billet = $_POST['numero_billet'];
+ // $numero_billet = mysqli_real_escape_string($connexion, $numero_billet);
 
   //requéte SQL
     $query = "INSERT into `billet` (numero_billet, prix, classe, id_vol)
-              VALUES ('$numero_billet','$prix', '$classe', '$vol')";
+              VALUES ('$numero_billet','$prix', '$classe', '$id_vol ')";
   // Exécuter la requête sur la base de données
     $res = mysqli_query($connexion, $query);
     if($res){
-        echo "<div class='sucess'>
-        <h3>Billets ajoutée avec succès.</h3>
-        <p>Cliquez ici pour aller a <a href='index.php'>l'accueil</a></p>
-        </div>";    
+       echo "<div class='sucess'>
+             <h3>Idées ajoutée avec succès.</h3>
+             <p>Cliquez ici pour aller a <a href='index.php'>l'accueil</a></p>
+       </div>";
     }
 }else{
 ?>
+
         <form class="form" method="post">
             
             <p class="title">Ajouter un billet </p>
             <p class="message">Reserve maintenant pour profiter du meilleur des voyages </p><br>
 
             <label>
-                <!-- <input class="input" type="text" placeholder="" required=""> -->
                 <span><i class="fa-solid fa-plane"></i> Numero Vol</span>
-                <select name="vol" class="input"  id="categorie">
+                <select name="id_vol" class="input"  id="categorie">
             <?php
                               // Connexion à la base de données
                 require_once "config.php";
@@ -67,24 +68,26 @@ if (isset($_REQUEST['numero_billet'], $_REQUEST['prix'], $_REQUEST['classe'], $_
             </label> 
             <label>
                 <input class="input" name="prix" type="number" placeholder="" required="">
-                <span>Prix</span>
+                <span><i class="fa-solid fa-money-bill"></i> Prix</span>
             </label>
             <label>
-                <input class="input" id="numero_billet" name="numero_billet" type="text" disabled <?php
+                <input class="input" id="numero_billet" name="numero_billet" type="hidden"  <?php
                 $numero_billet = rand(100000, 999999);
                 echo "value='$numero_billet'";
                 ?>placeholder="" required="">
-                <span>Numero</span>
+                <!-- <span><i class="fa-solid fa-list-ol"></i> Numero Billet</span> -->
             </label>
-            <button class="submit">Ajouter</button>
+            <button class="submit" name="envoyer">Ajouter</button>
             <p class="signin"><a href="index.php">Annuler</a> </p>
         </form>
-        <?php } ?>
+        <?php } 
+        
+        ?>
         <div class="photo">
             <img src="images/1.png" alt="image" >
         </div>
     </div>
-
+    
 
 
 </body>

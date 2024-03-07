@@ -69,3 +69,40 @@ echo "</div>";
             <a href="sup_billet.php?id='. $row['id_bilet'] .'"><span class="fa fa-trash"></span>Supprimer</a>
           </button>
           class="fa fa-trash
+
+
+
+          <?php 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+require_once "nav.php" ?>
+
+    <div class="container">
+<?php
+
+    
+ require_once "config.php";
+
+if (isset($_REQUEST['numero_billet'], $_REQUEST['prix'], $_REQUEST['classe'], $_REQUEST['vol'])){
+  // récupérer les données saissi par l'utilisateur et supprimer les antislashes ajoutés par le formulaire
+  $numero_billet = stripslashes($_REQUEST['numero_billet']);
+  $numero_billet = mysqli_real_escape_string($connexion, $numero_billet); 
+  $prix = stripslashes($_REQUEST['prix']);
+  $classe = stripslashes($_REQUEST['classe']);
+  $classe = mysqli_real_escape_string($connexion, $classe);
+  $vol = stripslashes($_REQUEST['vol']);
+
+  //requéte SQL
+    $query = "INSERT into `billet` (numero_billet, prix, classe, id_vol)
+              VALUES ('$numero_billet','$prix', '$classe', '$vol')";
+  // Exécuter la requête sur la base de données
+    $res = mysqli_query($connexion, $query);
+    if($res){
+        echo "<div class='sucess'>
+        <h3>Billets ajoutée avec succès.</h3>
+        <p>Cliquez ici pour aller a <a href='index.php'>l'accueil</a></p>
+        </div>";    
+    }
+}else{
+?>
