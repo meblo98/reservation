@@ -10,7 +10,7 @@
 
     
  require_once "config.php";
- session_start();
+
 if (isset($_REQUEST['numero_billet'], $_REQUEST['prix'], $_REQUEST['classe'], $_REQUEST['vol'])){
   // récupérer les données saissi par l'utilisateur et supprimer les antislashes ajoutés par le formulaire
   $numero_billet = stripslashes($_REQUEST['numero_billet']);
@@ -22,11 +22,14 @@ if (isset($_REQUEST['numero_billet'], $_REQUEST['prix'], $_REQUEST['classe'], $_
 
   //requéte SQL
     $query = "INSERT into `billet` (numero_billet, prix, classe, id_vol)
-              VALUES ('$numero_billet','$prix', '$classe', '$vol ')";
+              VALUES ('$numero_billet','$prix', '$classe', '$vol')";
   // Exécuter la requête sur la base de données
     $res = mysqli_query($connexion, $query);
     if($res){
-        header("Location: index.php");
+        echo "<div class='sucess'>
+        <h3>Billets ajoutée avec succès.</h3>
+        <p>Cliquez ici pour aller a <a href='index.php'>l'accueil</a></p>
+        </div>";    
     }
 }else{
 ?>
@@ -58,10 +61,6 @@ if (isset($_REQUEST['numero_billet'], $_REQUEST['prix'], $_REQUEST['classe'], $_
             ?>
       </select>
             </label> 
-            <!-- <label>
-                <input class="input" name="date" type="date" placeholder="" required="">
-                <span><i class="fa-solid fa-calendar"></i> Date Reservation</span>
-            </label>  -->
             <label>
                 <input class="input" name="classe" type="text" placeholder="" required="">
                 <span><i class="fa-solid fa-chair"></i> Classe</span>

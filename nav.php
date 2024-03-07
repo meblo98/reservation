@@ -13,7 +13,7 @@
 <body>
 <div class="main-container">
         <div class="header">
-            <a href="#" id="logo"><img src="images/2.png" alt=""></a>
+            <a href="index.php" id="logo"><img src="images/2.png" alt=""></a>
             <nav class="navbar">
                 <a href="index.php">home</a>
                 <a href="ajout_billet.php">ajout billet</a>

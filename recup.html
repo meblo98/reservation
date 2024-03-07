@@ -40,3 +40,32 @@ echo "</div>";
   
               error_reporting(E_ALL);
             ini_set('display_errors', 1);
+
+
+
+
+            echo"<div class='cards'>";
+              echo"<div class='card red'>";
+                  echo"<p class='tip'>Hover Me</p>";
+                  echo"<p class='second-text'>Lorem Ipsum</p>";
+              echo"</div>";              
+            echo"</div>";
+
+            echo'<div class="flip-card">'
+              echo'<div class="flip-card-inner">'
+                  echo'<div class="flip-card-front">'
+                      echo'<p class="title">FLIP CARD</p>'
+                      echo'<p>Hover Me</p>'
+                  echo'</div>'
+                  echo'<div class="flip-card-back">'
+                      echo'<p class="title">BACK</p>'
+                      echo'<p>Leave Me</p>'
+                  echo'</div>'
+              echo'</div>'
+          echo'</div>'
+
+
+          <button class="cssbuttons-io">
+            <a href="sup_billet.php?id='. $row['id_bilet'] .'"><span class="fa fa-trash"></span>Supprimer</a>
+          </button>
+          class="fa fa-trash
