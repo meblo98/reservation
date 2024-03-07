@@ -1,0 +1,108 @@
+    <?php require_once "config.php" ?>
+    <div class="ideas-list">
+        <?php
+        // Récupérer et afficher les idées
+        $sql = "SELECT * FROM billet ";
+        $result = $connexion->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            echo "<div class='idea'>";
+            echo "<h2>{$row['title']}</h2>";
+            echo "<p>Catégorie: {$row['category']}</p>";
+            echo '<a href="read.php?id='. $row['id_billet'] .'" class="btn btn-primary" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+            echo "</div>";
+        }
+        ?>
+    </div>
+echo"<div class='body'>";
+    echo"<div class='swiper-container'>";
+  echo"<div class='swiper-wrapper'>";
+    echo "<div class='slider-item swiper-slide'>";
+      echo "<div class='slider-image-wrapper'>";
+        echo "<img class='slider-image' src='images/billet.png' alt='SliderImg'>";
+      echo "</div>";
+      echo "<div class='slider-item-content'>";
+        echo "<h1>Exploring Italy's Beauty</h1>"";
+        echo "<p>Discover the breathtaking landscapes, rich history, and delectable cuisine of Italy in this mesmerizing journey.</p>";
+      echo "</div>";
+    echo "</div>  ";
+  echo "</div>";
+  echo "<div class='slider-buttons'>";
+    echo "<button class='swiper-button-prev'>Prev</button>";
+    echo "<button class='swiper-button-next'>Next</button>";
+  echo "</div>";
+;
+  echo "<div class='swiper-pagination'></div>";
+  echo "</div>";
+echo "</div>";
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js'></script><script  src="script_card.js"></script>
+  
+              error_reporting(E_ALL);
+            ini_set('display_errors', 1);
+
+
+
+
+            echo"<div class='cards'>";
+              echo"<div class='card red'>";
+                  echo"<p class='tip'>Hover Me</p>";
+                  echo"<p class='second-text'>Lorem Ipsum</p>";
+              echo"</div>";              
+            echo"</div>";
+
+            echo'<div class="flip-card">'
+              echo'<div class="flip-card-inner">'
+                  echo'<div class="flip-card-front">'
+                      echo'<p class="title">FLIP CARD</p>'
+                      echo'<p>Hover Me</p>'
+                  echo'</div>'
+                  echo'<div class="flip-card-back">'
+                      echo'<p class="title">BACK</p>'
+                      echo'<p>Leave Me</p>'
+                  echo'</div>'
+              echo'</div>'
+          echo'</div>'
+
+
+          <button class="cssbuttons-io">
+            <a href="sup_billet.php?id='. $row['id_bilet'] .'"><span class="fa fa-trash"></span>Supprimer</a>
+          </button>
+          class="fa fa-trash
+
+
+
+          <?php 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+require_once "nav.php" ?>
+
+    <div class="container">
+<?php
+
+    
+ require_once "config.php";
+
+if (isset($_REQUEST['numero_billet'], $_REQUEST['prix'], $_REQUEST['classe'], $_REQUEST['vol'])){
+  // récupérer les données saissi par l'utilisateur et supprimer les antislashes ajoutés par le formulaire
+  $numero_billet = stripslashes($_REQUEST['numero_billet']);
+  $numero_billet = mysqli_real_escape_string($connexion, $numero_billet); 
+  $prix = stripslashes($_REQUEST['prix']);
+  $classe = stripslashes($_REQUEST['classe']);
+  $classe = mysqli_real_escape_string($connexion, $classe);
+  $vol = stripslashes($_REQUEST['vol']);
+
+  //requéte SQL
+    $query = "INSERT into `billet` (numero_billet, prix, classe, id_vol)
+              VALUES ('$numero_billet','$prix', '$classe', '$vol')";
+  // Exécuter la requête sur la base de données
+    $res = mysqli_query($connexion, $query);
+    if($res){
+        echo "<div class='sucess'>
+        <h3>Billets ajoutée avec succès.</h3>
+        <p>Cliquez ici pour aller a <a href='index.php'>l'accueil</a></p>
+        </div>";    
+    }
+}else{
+?>
