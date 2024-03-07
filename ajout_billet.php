@@ -27,14 +27,12 @@ require_once "nav.php";
   // Exécuter la requête sur la base de données
     $res = mysqli_query($connexion, $query);
     if($res){
-       echo "<div class='sucess'>
-             <h3>Idées ajoutée avec succès.</h3>
-             <p>Cliquez ici pour aller a <a href='index.php'>l'accueil</a></p>
-       </div>";
+       header("Location: index.php");
     }
 }else{
 ?>
 
+        <div class="container">
         <form class="form" method="post">
             
             <p class="title">Ajouter un billet </p>
@@ -80,14 +78,16 @@ require_once "nav.php";
             <button class="submit" name="envoyer">Ajouter</button>
             <p class="signin"><a href="index.php">Annuler</a> </p>
         </form>
+
         <?php } 
         
         ?>
-        <div class="photo">
+
+<div class="photo">
             <img src="images/1.png" alt="image" >
         </div>
-    </div>
-    
+
+        </div>
 
 
 </body>
