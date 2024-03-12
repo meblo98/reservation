@@ -16,11 +16,10 @@
             <a href="index.php" id="logo"><img src="images/2.png" alt=""></a>
             <nav class="navbar">
                 <a href="index.php">home</a>
-                <a href="ajout_billet.php">ajout billet</a>
-                <!-- <a href="#">gallery</a>
-                <a href="#">about</a>
+                <a href="#">A propos</a>
+                <a href="galerie.php">Galerie</a>
                 <a href="#">blog</a>
-                <a href="#">contact</a> -->
+                <a href="#">contact</a>
             </nav>
 
             <div class="icons">

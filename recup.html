@@ -106,3 +106,275 @@ if (isset($_REQUEST['numero_billet'], $_REQUEST['prix'], $_REQUEST['classe'], $_
     }
 }else{
 ?>
+
+
+<!-- affichage des donnees de la base -->
+
+<div class="billet-list">
+  <?php
+
+  require_once "config.php";
+  // Récupérer et afficher les idées
+  // $sql = "SELECT * FROM billet ";
+  $sql = "SELECT vol.*, billet.*
+  FROM vol
+  INNER JOIN billet ON vol.id_vol = billet.id_vol";
+  $result = $connexion->query($sql);
+  while ($row = $result->fetch_assoc()) {
+      echo'<div class="flip-card">';
+        echo'<div class="flip-card-inner">';
+            echo'<div class="flip-card-front">';
+                echo'<p class="title">Billet numero</p><br/><br/>';
+                echo "<h2>{$row['numero_billet']}</h2>";
+            echo'</div>';
+            echo'<div class="flip-card-back">';
+                //echo'<p class="title">Billet numero {$row["numero_billet"]}</p><br/><br/>';
+                echo "<h2>Billet numero: {$row["numero_billet"]}</h2>";
+                echo "<h2>Vol numero: {$row["numero_vol"]}</h2>";
+                echo "<h2>Compagnie: {$row["compagnie_aerienne"]}</h2>";
+                echo "<h2>Prix: {$row['prix']}</h2>";
+                echo "<h2>Origine: {$row['lieu_depart']}</h2>";
+                echo "<h2>Destination: {$row['destination']}</h2>";
+                echo "<h2>Classe: {$row['classe']}</h2><br/>";
+                echo '<button class="cssbuttons-io">
+                <a href="modif_billet.php?id='. $row['id_bilet'] .'"><span class="fa fa-pencil"></span>modifier</a>
+                </button><br/>';
+                  echo '<button class="cssbuttons-io">
+                  <a href="sup_billet.php?id='. $row['id_bilet'] .'"><span class="fa fa-trash"></span>Supprimer</a>
+                </button>';
+                echo'</div>';
+          echo'</div>';
+    echo'</div>';
+  }
+
+  ?>
+
+</div>
+<div class="billet-list">
+  <?php
+
+  require_once "config.php";
+  // Récupérer et afficher les idées
+  // $sql = "SELECT * FROM billet ";
+  $sql = "SELECT *
+  FROM vol";
+  $result = $connexion->query($sql);
+  while ($row = $result->fetch_assoc()) {
+      echo'<div class="flip-card">';
+        echo'<div class="flip-card-inner">';
+            echo'<div class="flip-card-front">';
+                echo'<p class="title">Vol numero</p><br/><br/>';
+                echo "<h2>{$row['numero_voll']}</h2>";
+            echo'</div>';
+            echo'<div class="flip-card-back">';
+                //echo'<p class="title">Billet numero {$row["numero_billet"]}</p><br/><br/>';
+                echo "<h2>Billet numero: {$row["heure_depart"]}</h2>";
+                echo "<h2>Billet numero: {$row["heure_arrive"]}</h2>";
+                echo "<h2>Vol numero: {$row["numero_vol"]}</h2>";
+                echo "<h2>Compagnie: {$row["compagnie_aerienne"]}</h2>";
+                echo "<h2>Prix: {$row['prix']}</h2>";
+                echo "<h2>Origine: {$row['lieu_depart']}</h2>";
+                echo "<h2>Destination: {$row['destination']}</h2>";
+                echo "<h2>Classe: {$row['classe']}</h2><br/>";
+                echo '<button class="cssbuttons-io">
+                <a href="modif_vol.php?id='. $row['id_vol'] .'"><span class="fa fa-pencil"></span>modifier</a>
+                </button><br/>';
+                  echo '<button class="cssbuttons-io">
+                  <a href="sup_vol.php?id='. $row['id_vol'] .'"><span class="fa fa-trash"></span>Supprimer</a>
+                </button>';
+                echo'</div>';
+          echo'</div>';
+    echo'</div>';
+  }
+
+  ?>
+
+</div>
+
+
+
+
+<!-- css card -->
+
+
+.billet-list{
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.flip-card {
+  display: flex;
+  background-color: transparent;
+  width: 190px;
+  height: 254px;
+  perspective: 1000px;
+  font-family: sans-serif;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 900;
+  text-align: center;
+  margin: 0;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 1px solid #fe7a15;
+  border-radius: 1rem;
+}
+
+.flip-card-front {
+  background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%,
+     rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
+  color: #f42267;
+}
+
+.flip-card-back {
+  background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%,
+     bisque 40%, rgb(255, 185, 160) 78%);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.cssbuttons-io {
+  position: relative;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  border-radius: 0.8em;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(to right, #8e2de2, #fe7a15);
+  color: ghostwhite;
+  overflow: hidden;
+}
+
+.cssbuttons-io span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8em 1.2em 0.8em 1.05em;
+}
+
+.cssbuttons-io::before,
+.cssbuttons-io::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.cssbuttons-io::before {
+  content: "";
+  background: #3011bc;
+  width: 100%;
+  left: -10%;
+  transform: skew(30deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.cssbuttons-io:hover::before {
+  transform: translate3d(100%, 0, 0);
+}
+
+.cssbuttons-io:active {
+  transform: scale(0.95);
+}
+
+
+
+
+<!-- card -->
+<ul class="cards">
+  <li>
+    <a href="" class="card">
+      <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
+      <div class="card__overlay">
+        <div class="card__header">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+          <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+          <div class="card__header-text">
+            <h3 class="card__title">Jessica Parker</h3>            
+            <span class="card__status">1 hour ago</span>
+          </div>
+        </div>
+        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+      </div>
+    </a>      
+  </li>
+  <li>
+    <a href="" class="card">
+      <img src="https://i.imgur.com/2DhmtJ4.jpg" class="card__image" alt="" />
+      <div class="card__overlay">        
+        <div class="card__header">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
+          <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+          <div class="card__header-text">
+            <h3 class="card__title">kim Cattrall</h3>
+            <span class="card__status">3 hours ago</span>
+          </div>
+        </div>
+        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+      </div>
+    </a>
+  </li>
+  <li>
+    <a href="" class="card">
+      <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
+      <div class="card__overlay">
+        <div class="card__header">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+          <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+          <div class="card__header-text">
+            <h3 class="card__title">Jessica Parker</h3>
+            <span class="card__tagline">Lorem ipsum dolor sit amet consectetur</span>            
+            <span class="card__status">1 hour ago</span>
+          </div>
+        </div>
+        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+      </div>
+    </a>
+  </li>
+  <li>
+    <a href="" class="card">
+      <img src="https://i.imgur.com/2DhmtJ4.jpg" class="card__image" alt="" />
+      <div class="card__overlay">
+        <div class="card__header">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
+          <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+          <div class="card__header-text">
+            <h3 class="card__title">kim Cattrall</h3>
+            <span class="card__status">3 hours ago</span>
+          </div>          
+        </div>
+        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+      </div>
+    </a>
+  </li>    
+</ul>
