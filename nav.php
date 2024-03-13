@@ -16,7 +16,7 @@
             <a href="index.php" id="logo"><img src="images/2.png" alt=""></a>
             <nav class="navbar">
                 <a href="index.php">home</a>
-                <a href="#">A propos</a>
+                <a href="ajout_billet.php">Resrvation</a>
                 <a href="galerie.php">Galerie</a>
                 <a href="#">blog</a>
                 <a href="#">contact</a>

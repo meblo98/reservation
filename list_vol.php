@@ -18,9 +18,9 @@
           $result = $connexion->query($sql);
           while ($row = $result->fetch_assoc()) {
               echo "<div class='billet'>";
-              echo "<h2>Numero du vol: {$row['numero_vol']}</h2>";
-              echo "<p>Compagnie: {$row['compagnie_aerienne']}</p><br/>";
-              echo '<a href="read.php?id='. $row['id'] .'" class="btn btn-primary" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+              echo "<h2>Numero du vol : {$row['numero_vol']}</h2>";
+              echo "<p>Compagnie : {$row['compagnie_aerienne']}</p><br/>";
+              echo '<a href="lire_vol.php?id='. $row['id_vol'] .'" class="btn btn-primary" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
               echo "</div>";
           }
           ?>

@@ -19,7 +19,7 @@
           while ($row = $result->fetch_assoc()) {
               echo "<div class='billet'>";
               echo "<h2>{$row['prenom']} {$row['nom']}</h2>";
-              echo '<a href="read.php?id='. $row['id'] .'" class="btn btn-primary" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+              echo '<a href="lire_client.php?id='. $row['id_client'] .'" class="btn btn-primary" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
               echo "</div>";
           }
           ?>
