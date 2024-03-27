@@ -3,6 +3,7 @@
 <html lang="fr">
 
 <body>
+    
 <?php
 
 error_reporting(E_ALL);
@@ -12,8 +13,6 @@ require_once "nav.php";
 //if (isset($_REQUEST['prix'], $_REQUEST['classe'], $_REQUEST['numero_billet'])){
   // récupérer les données saissi par l'utilisateur et supprimer les antislashes ajoutés par le formulaire
   if (isset($_POST['envoyer'])) {
-    # code...
-  
   $prix = $_POST['prix'];
   $id_vol = $_POST['id_vol'];
   //$prix = mysqli_real_escape_string($conn, $prix); 
@@ -37,12 +36,32 @@ require_once "nav.php";
             
             <p class="title">Ajouter un billet </p>
             <p class="message">Reserve maintenant pour profiter du meilleur des voyages </p><br>
-
             <label>
-                <span><i class="fa-solid fa-plane"></i> Numero Vol</span>
+                <span><i class="fa-solid fa-plane"></i> Client</span>
                 <select name="id_vol" class="input"  id="categorie">
             <?php
                               // Connexion à la base de données
+                require_once "config.php";
+                          
+                              // Récupération des données
+                $sql_client = "SELECT * FROM client";
+                $result = $connexion->query($sql_client);
+                if ($result->num_rows > 0) {
+                     while ($row_client = $result->fetch_assoc()) {
+                        echo "<option value='" . $row_client["id_client"] . "'>" . $row_client["nom"]. " ".$row_client["prenom"] . "</option>";
+                    }
+                } else {
+                     echo "<option value=''>Aucun client trouvé</option>";
+                 }
+
+                 $connexion->close();
+           
+    echo '  </select>
+            </label> 
+            <label>
+                <span><i class="fa-solid fa-plane"></i> Numero Vol</span>
+                <select name="id_vol" class="input"  id="categorie">';
+                    // Connexion à la base de données
                 require_once "config.php";
                           
                               // Récupération des données

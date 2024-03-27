@@ -270,12 +270,16 @@ margin-left: 1rem;
 
 
 /* container du index */
+.billet-list {
+  margin-top: 50px;
+  max-width: 900px;
+  margin: 50px auto;
+}
 .titre{
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
-  padding-left: 50vw;
 }
 
 .billet {
@@ -287,8 +291,5 @@ margin-left: 1rem;
 
 }
 
-.billet-list {
-  max-width: 800px;
-  margin: 50px auto;
 
-}
+

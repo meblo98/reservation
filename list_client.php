@@ -8,9 +8,11 @@
 </head>
 <body>
      <?php require_once "nav.php" ?>
-     <h1 class="titre" >liste des clients</h1>
 
-     <div class="billet-list">
+    <div class="container">
+    <div class="billet-list">
+     <h1 class="titre>Clients</h1>
+    <a class="btn btn-primary" href="ajout_client.php">Ajouter</a>
   <?php
 
   require_once "config.php";
@@ -25,6 +27,7 @@
           ?>
     </div>
   
+    </div>
 
 
 <?php require_once "footer.php" ?>
